@@ -13,3 +13,9 @@ File { backup => 'main' }
 
 node default {
 }
+
+node 'copl01', 'copl02' {
+}
+
+node 'puppet' {
+}
