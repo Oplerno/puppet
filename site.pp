@@ -15,6 +15,12 @@ node default {
 }
 
 node 'copl01', 'copl02' {
+  include nginx
+  include unicorn
+}
+
+node 'copl03' {
+  include '::mysql::server'
 }
 
 node 'puppet' {
