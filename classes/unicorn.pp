@@ -4,7 +4,7 @@
 class unicorn {
 	service { 'unicorn':
 		ensure => 'running',
-		before => Package['unicorn'],
+		require => Package['unicorn'],
 	}
 	package{ 'unicorn':
 		ensure => 'latest',

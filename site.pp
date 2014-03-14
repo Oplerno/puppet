@@ -12,6 +12,7 @@ filebucket { 'main':
 File { backup => 'main' }
 
 node default {
+  include rvm
 }
 
 node 'copl01', 'copl02' {
