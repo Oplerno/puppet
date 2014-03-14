@@ -1,5 +1,7 @@
 ## site.pp ##
 
+import "classes/*"
+
 # Define filebucket 'main':
 filebucket { 'main':
   server => 'copl03',
@@ -10,6 +12,4 @@ filebucket { 'main':
 File { backup => 'main' }
 
 node default {
-#  include sudo
-  include vim
 }
