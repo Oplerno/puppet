@@ -18,6 +18,7 @@ node default {
 node 'copl01', 'copl02' {
   include nginx
   include unicorn
+  include rvm
 }
 
 node 'copl03' {
