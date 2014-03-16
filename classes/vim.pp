@@ -1,9 +1,9 @@
 # vim.pp
 
 package {'vim-common':
-	ensure => present,
+  ensure => present,
 }
 
 package {'vim':
-	ensure => present,
+  ensure => present,
 }

@@ -1,6 +1,6 @@
 ## site.pp ##
 
-import "classes/*"
+import 'classes/*'
 
 # Define filebucket 'main':
 filebucket { 'main':
