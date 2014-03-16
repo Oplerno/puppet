@@ -1,4 +1,4 @@
-## apache2.pp
+## turnkey.pp
 
 service { "apache2":
 	ensure => "stopped",
@@ -8,6 +8,10 @@ service { "apache2":
 service { "shellinabox":
 	ensure => "stopped",
 	enable => false,
+}
+
+package { "shellinabox":
+	ensure => "absent",
 }
 
 service { "webmin":
