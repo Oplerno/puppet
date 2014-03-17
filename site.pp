@@ -13,6 +13,7 @@ File { backup => 'main' }
 
 node default {
   include rvm
+  include nodejs
 }
 
 node 'copl01', 'copl02' {
