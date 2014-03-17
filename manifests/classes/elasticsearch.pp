@@ -16,7 +16,7 @@ class { 'elasticsearch':
   version                  => '1.0.1',
   config                   => {
     'node'                 => {
-      'name'               => 'elasticsearch001'
+      'name'               => "elasticsearch-$::hostname"
     },
     'index'                => {
       'number_of_replicas' => '0',
