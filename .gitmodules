@@ -1,0 +1,15 @@
+[submodule "modules/rvm"]
+	path = modules/rvm
+	url = http://github.com/maestrodev/puppet-rvm
+[submodule "modules/bundler"]
+	path = modules/bundler
+	url = https://github.com/puppetlabs-operations/puppet-bundler
+[submodule "modules/mysql"]
+	path = modules/mysql
+	url = http://github.com/puppetlabs/puppetlabs-mysql
+[submodule "modules/nginx"]
+	path = modules/nginx
+	url = http://github.com/jfryman/puppet-nginx
+[submodule "modules/elasticsearch"]
+	path = modules/elasticsearch
+	url = https://github.com/elasticsearch/puppet-elasticsearch

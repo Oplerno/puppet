@@ -1,0 +1,10 @@
+auth.conf
+console.conf
+fileserver.conf
+puppet.conf
+puppetdb.conf
+
+ssl/
+
+hiera.yaml
+routes.yaml
