@@ -30,3 +30,19 @@ package { 'libqt4-webkit':
   before  => Exec['phantom_build'],
 }
 
+#exec { 'npm':
+#  command => '/usr/bin/curl --insecure https://www.npmjs.org/install.sh | sh',
+#  cwd     => '/root/',
+#  creates => '/usr/bin/npm',
+#  require => Package['nodejs'],
+#}
+
+apt::source { 'wheezy-backports':
+  location          => 'http://ftp.us.debian.org/debian',
+  release           => 'wheezy-backports',
+  repos             => 'main',
+}
+
+package { 'nodejs':
+  ensure => 'installed',
+}
