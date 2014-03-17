@@ -1,5 +1,7 @@
 ## nginx.pp
 
+class { 'nginx': }
+
 file { 'nginx.conf':
   ensure  => 'present',
   notify  => Service['nginx'],
