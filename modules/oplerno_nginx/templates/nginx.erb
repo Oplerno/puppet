@@ -21,9 +21,11 @@ server {
 	ssl_prefer_server_ciphers on;
 	ssl_protocols SSLv3 TLSv1 TLSv1.1 TLSv1.2;
 	ssl_ciphers ECDH+AESGCM:DH+AESGCM:ECDH+AES256:DH+AES256:ECDH+AES128:DH+AES:ECDH+3DES:DH+3DES:RSA+AES:RSA+3DES:!aNULL:!MD5:!DSS;
-	add_header Strict-Transport-Security max-age=15768000;
 	ssl_stapling on;
 	ssl_stapling_verify on;
+
+	# Headers
+	add_header Strict-Transport-Security max-age=31536000;
 
 	location = /google99d84ca7cbab332f.html {
 		rewrite ^/(.*)  $1;
