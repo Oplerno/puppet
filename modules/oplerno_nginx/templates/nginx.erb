@@ -61,6 +61,7 @@ server {
 	}
 
 	location / {
+	  proxy_set_header X-FORWARDED_PROTO https;
 		proxy_pass http://localhost:9000;
 		proxy_set_header Host $host;
 	}
