@@ -26,6 +26,7 @@ server {
 
 	# Headers
 	add_header Strict-Transport-Security max-age=31536000;
+	add_header X-Frame-Options DENY;
 
 	location = /google99d84ca7cbab332f.html {
 		rewrite ^/(.*)  $1;
