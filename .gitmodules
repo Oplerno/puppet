@@ -13,3 +13,6 @@
 [submodule "modules/elasticsearch"]
 	path = modules/elasticsearch
 	url = https://github.com/elasticsearch/puppet-elasticsearch
+[submodule "modules/redis"]
+	path = modules/redis
+	url = git@github.com:justinclayton/puppet-module-redis.git
