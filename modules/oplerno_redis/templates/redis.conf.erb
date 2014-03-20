@@ -5,8 +5,11 @@ daemonize yes
 
 pidfile /var/run/redis/redis.pid
 
+<% if @hostname != ("cOPL03") then -%>
 slaveof puppet 6379
-bind  <%= @ipaddress %>
+bind 127.0.0.1
+#bind 127.0.0.1 <%= @ipaddress_eth1 %>
+<% end -%>
 
 port 6379
 
