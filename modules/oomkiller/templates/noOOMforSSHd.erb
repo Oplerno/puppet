@@ -1,0 +1,2 @@
+# Update the OOM settings for _ALL_ ssh processes every minute.
+* * * * * root for pid in $(pidof sshd) ; do echo -17 | tee /proc/$pid/oom_adj > /dev/null ; done

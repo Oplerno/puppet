@@ -1,0 +1,7 @@
+# Disable OOM-killer
+vm.oom-kill = 0
+# Enable OOM-kill the triggering task (instead of scanning the tasklist)
+vm.oom_kill_allocating_task = 1
+# Disable Memory Overcommit
+# 0 = "estimate if we have enough RAM", 1 = "Always say yes", 2 = "say no if we don't have the memory"
+vm.overcommit_memory = 2

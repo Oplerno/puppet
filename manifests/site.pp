@@ -24,6 +24,7 @@ node 'copl01', 'copl02' {
 
 node 'copl03' {
   include '::mysql::server'
+  class{ 'oomkiller': }
 }
 
 node 'puppet' {
