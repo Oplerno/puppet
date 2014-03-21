@@ -1,3 +1,10 @@
+
+upstream appservers {
+    server localhost:9000	weight=5;
+    server app01:9000	 	weight=10 max_fails=3 fail_timeout=30s;
+    server app02:9000	 	weight=10 max_fails=3 fail_timeout=30s;
+}
+
 server {
 	listen   80;
 
@@ -62,7 +69,8 @@ server {
 
 	location / {
 	  proxy_set_header X-FORWARDED_PROTO https;
-		proxy_pass http://localhost:9000;
+		proxy_pass http://appservers;
+		#proxy_pass http://localhost:9000;
 		proxy_set_header Host $host;
 	}
 }
