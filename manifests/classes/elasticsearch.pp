@@ -12,6 +12,14 @@ package { 'openjdk-7-jre-headless':
   ensure => 'installed',
 }
 
+if $::hostname == ("cOPL03") {
+  $ec_ip = $::ipaddress
+} else {
+  $ec_ip = $::ipaddress_eth1
+}
+
+
+
 class { 'elasticsearch':
   version                  => '1.0.1',
   config                   => {
@@ -23,12 +31,12 @@ class { 'elasticsearch':
       'number_of_shards'   => '5'
     },
     'network'              => {
-      'host'               => $::ipaddress
+      'host'               => $ec_ip
     }
   }
 }
 
 file { '/etc/environment':
-  content => inline_template("ELASTICSEARCH_URL=http://$::ipaddress:9200")
+  content => inline_template("ELASTICSEARCH_URL=http://$ec_ip:9200")
 }
 
