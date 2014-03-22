@@ -67,6 +67,13 @@ server {
 		root /home/deploy/www/current/public/;
 	}
 
+	location ~ ^/(assets)/  {
+		root /home/deploy/www/current/public/;
+		gzip_static on; # to serve pre-gzipped version
+		expires max;
+		add_header Cache-Control public;
+	}
+
 	location / {
 	  proxy_set_header X-FORWARDED_PROTO https;
 		proxy_pass http://appservers;
