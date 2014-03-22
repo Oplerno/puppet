@@ -1,14 +1,74 @@
-# mysql.pp
+## mysql.pp
 
-class { 'mysql::server':
-  override_options => { 'mysqld' => { 'max_connections' => '1024', 'bind-address' => '0.0.0.0' } }
+if $::hostname == ('cOPL03') {
+  $my_ip = $::ipaddress
+} else {
+  $my_ip = $::ipaddress_eth1
 }
 
-#mysql_user { 'root@%':
-#  ensure                   => 'present',
-#  password_hash            => '****',
-#  max_connections_per_hour => '0',
-#  max_queries_per_hour     => '0',
-#  max_updates_per_hour     => '0',
-#  max_user_connections     => '0',
-#}
+
+class { 'mysql::server':
+#  root_password      => $MYSQL_ROOT_PASSWD,
+#  old_root_password  => $MYSQL_ROOT_PASSWD,
+  override_options   => {
+    'mysqld' => {
+      'max_connections'                 => '1024',
+      'bind-address'                    => $my_ip,
+      'server-id'                       => $MYSQL_ID,
+      'innodb_flush_log_at_trx_commit'  => 1,
+      'sync_binlog'                     => 1,
+      'log-bin'                         => 'mysql-bin',
+      'report-host'                     => $::hostname,
+    }
+  }
+}
+
+$users = {
+  'repl@%' => {
+    ensure                    => 'present',
+    password_hash             => $MYSQL_REPL_PASSWD_HASH,
+  },
+}
+
+mysql_user { 'repl@%':
+    ensure                    => 'present',
+    password_hash             => $MYSQL_REPL_PASSWD_HASH,
+}
+
+$grants = {
+  'repl@%/*.*' => {
+    ensure     => 'present',
+    options    => ['GRANT'],
+    privileges => ['REPLICATION SLAVE'],
+    table      => '*.*',
+    user       => 'repl@%',
+  },
+}
+
+mysql_grant { 'repl@%/*.*':
+    ensure     => 'present',
+    options    => ['GRANT'],
+    privileges => ['REPLICATION SLAVE'],
+    table      => '*.*',
+    user       => 'repl@%',
+}
+
+$databases = {
+  'oplerno_production' => {
+    ensure             => 'present',
+    charset            => 'utf8',
+  },
+  'testing'            => {
+    ensure             => 'present',
+    charset            => 'utf8',
+  },
+}
+
+mysql_database { 'oplerno_production':
+    ensure             => 'present',
+    charset            => 'utf8',
+}
+mysql_database { 'testing':
+  ensure  => 'absent',
+  charset => 'utf8',
+}
