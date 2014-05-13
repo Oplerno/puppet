@@ -22,6 +22,7 @@ node 'copl01', 'copl02' {
   include rvm
 }
 
+# Puppet Master
 node 'copl03' {
   include '::mysql::server'
   class{ 'oomkiller': }
