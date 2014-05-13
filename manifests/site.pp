@@ -30,7 +30,7 @@ node 'copl03' {
   vcsrepo { '/etc/puppetlabs/puppet':
     ensure       => latest,
     provider     => git,
-    source       => 'https://github.com/Oplerno/puppet.git',
+    source       => 'git@github.com:Oplerno/puppet.git',
     revision     => 'master',
   }
 }
