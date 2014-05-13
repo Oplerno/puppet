@@ -25,6 +25,12 @@ node 'copl01', 'copl02' {
 node 'copl03' {
   include '::mysql::server'
   class{ 'oomkiller': }
+
+  vcsrepo { '/etc/puppetlabs/puppet':
+    ensure       => present,
+    provider     => git,
+    source       => 'https://github.com/Oplerno/puppet.git',
+  }
 }
 
 node 'puppet' {
