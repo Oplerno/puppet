@@ -7,7 +7,7 @@ upstream appservers {
 
 server {
 	listen   80;
-	server_name  *.oplerno.com;
+	server_name  .oplerno.com;
 
 	if ($server_port = 80) {
 		return 301 https://enroll.oplerno.com$request_uri;
