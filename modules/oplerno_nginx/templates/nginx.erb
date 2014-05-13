@@ -7,23 +7,23 @@ upstream appservers {
 
 server {
 	listen   80;
-	server_name  marketplace.oplerno.com;
+	server_name  *.oplerno.com;
 
 	if ($server_port = 80) {
-		return 301 https://marketplace.oplerno.com;
+		return 301 https://enroll.oplerno.com$request_uri;
 	}
 }
 
 server {
 	listen   443  default ssl;
 	listen   [::]:443 default ssl ipv6only=on;
-	server_name  marketplace.oplerno.com;
+	server_name  enroll.oplerno.com;
 	root /home/deploy/www/current/public;
 	disable_symlinks off;
 
 	ssl  on;
-	ssl_certificate  /home/deploy/.marketplace_ssl.crt;
-	ssl_certificate_key  /home/deploy/.marketplace_ssl.key;
+	ssl_certificate  /home/deploy/.enroll_ssl.crt;
+	ssl_certificate_key  /home/deploy/.oplerno_ssl.key;
 	ssl_dhparam /home/deploy/.dh.param;
 	ssl_session_cache shared:SSL:10m;
 	ssl_session_timeout  5m;
