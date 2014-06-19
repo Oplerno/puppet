@@ -73,6 +73,10 @@ server {
 		root /home/deploy/www/current/public/;
 	}
 
+	location = /sitemap.xml {
+		root /home/deploy/www/current/public;
+	}
+
 	location ~ ^/(assets)/  {
 		root /home/deploy/www/current/public/;
 		gzip_static on; # to serve pre-gzipped version
