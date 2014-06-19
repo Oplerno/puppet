@@ -14,8 +14,10 @@ package { 'openjdk-7-jre-headless':
 
 if $::hostname == ("cOPL03") {
   $ec_ip = $::ipaddress
+  $master = 'true'
 } else {
   $ec_ip = $::ipaddress_eth1
+  $master = 'false'
 }
 
 
@@ -24,7 +26,8 @@ class { 'elasticsearch':
   version                  => '1.0.1',
   config                   => {
     'node'                 => {
-      'name'               => "elasticsearch-$::hostname"
+      'name'               => "elasticsearch-$::hostname",
+      'master'             => $master
     },
     'index'                => {
       'number_of_replicas' => '0',
