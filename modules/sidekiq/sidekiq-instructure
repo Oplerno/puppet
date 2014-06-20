@@ -12,7 +12,6 @@
 LOCATION=/home/deploy/www/current
 SERVICE=$(basename $0)
 SIDEKIQ="bundle exec sidekiq"
-WORKER=$LOCATION/workers/instructure.rb
 CONFIG=$LOCATION/config/sidekiq.yaml
 
 . /etc/profile.d/rvm.sh
@@ -26,7 +25,7 @@ case "$1" in
     echo "Starting script $SERVICE"
 
     cd $LOCATION
-    $SIDEKIQ -d -C $CONFIG -r $WORKER -L /var/log/sidekiq.log -P /var/run/$SERVICE.pid
+    $SIDEKIQ -d -C $CONFIG -L /var/log/sidekiq.log -P /var/run/$SERVICE.pid
     ;;
   stop)
     echo "Stopping script $SERVICE"
