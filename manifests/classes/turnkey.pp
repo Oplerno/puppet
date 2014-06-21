@@ -8,7 +8,7 @@ service { 'apache2':
 service { 'shellinabox':
   ensure => 'stopped',
   enable => false,
-  notify => Package['shellinabox'],
+  require => Package['shellinabox'],
 }
 
 package { 'shellinabox':
