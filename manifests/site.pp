@@ -20,6 +20,7 @@ node 'copl01', 'copl02' {
   include nginx
   include unicorn
   include rvm
+  include sidekiq
 }
 
 node 'copl03' {

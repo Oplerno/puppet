@@ -1,0 +1,49 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          sidekiq-instructure
+# Required-Start:    $syslog
+# Required-Stop:     $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Start daemon at boot time
+# Description:       Enable service provided by sidekiq-instructure.
+### END INIT INFO
+
+LOCATION=/home/deploy/www/current
+SERVICE=$(basename $0)
+SIDEKIQ="bundle exec sidekiq"
+CONFIG=$LOCATION/config/sidekiq.yaml
+
+. /etc/profile.d/rvm.sh
+
+# Some things that run always
+touch /var/lock/$SERVICE
+
+# Carry out specific functions when asked to by the system
+case "$1" in
+  start)
+    echo "Starting script $SERVICE"
+
+    cd $LOCATION
+    $SIDEKIQ -d -C $CONFIG -L /var/log/sidekiq.log -P /var/run/$SERVICE.pid
+    ;;
+  stop)
+    echo "Stopping script $SERVICE"
+
+    # Warn sidekiq it will be shutdown soon
+    kill -USR1 $(cat /var/run/$SERVICE.pid)
+
+    # Should we wait here?
+    sleep 5
+
+    # Kill sidekiq
+    kill -TERM $(cat /var/run/$SERVICE.pid)
+    rm /var/run/$SERVICE.pid /var/lock/$SERVICE
+    ;;
+  *)
+    echo "Usage: /etc/init.d/$SERVICE {start|stop}"
+    exit 1
+    ;;
+esac
+
+exit 0
