@@ -15,6 +15,7 @@ SIDEKIQ="bundle exec sidekiq"
 CONFIG=$LOCATION/config/sidekiq.yaml
 
 . /etc/profile.d/rvm.sh
+. /etc/profile.d/$SERVICE.sh
 
 # Some things that run always
 touch /var/lock/$SERVICE

@@ -18,7 +18,6 @@ class sidekiq {
   }
 
 	file { '/etc/profile.d/sidekiq.sh':
-		content => inline_template("REDIS_URL='http://puppet:6379/'")
-	}
-
+    content => template('sidekiq/sidekiq.sh.erb')
+  }
 }
