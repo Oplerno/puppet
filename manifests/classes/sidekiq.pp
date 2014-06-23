@@ -16,4 +16,9 @@ class sidekiq {
   	owner   => 'root',
   	group   => 'root',
   }
+
+	file { '/etc/profile.d/sidekiq.sh':
+		content => inline_template("REDIS_URL='http://puppet:6379/'")
+	}
+
 }
