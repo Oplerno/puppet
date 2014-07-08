@@ -51,6 +51,10 @@ server {
 		return 200 "61482dcd4fc8845d75f2d34ca8695fa3";
 	}
 
+	location = /robot.txt {
+		root /home/deploy/www/current/public;
+	}
+
 	error_page 500 501 503 /500.html;
 	location = /500.html {
 		root /home/deploy/www/current/public;
