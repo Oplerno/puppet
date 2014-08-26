@@ -5,12 +5,6 @@ service { 'apache2':
   enable => false,
 }
 
-service { 'shellinabox':
-  ensure => 'stopped',
-  enable => false,
-  require => Package['shellinabox'],
-}
-
 package { 'shellinabox':
   ensure => 'absent',
 }
