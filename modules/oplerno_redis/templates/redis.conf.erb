@@ -3,7 +3,7 @@
 
 daemonize yes
 
-pidfile /var/run/redis/redis.pid
+pidfile /var/run/redis/redis-server.pid
 
 <% if @hostname != ("cOPL03") then -%>
 slaveof puppet 6379
