@@ -1,6 +1,7 @@
 ## site.pp ##
 
 import 'classes/*'
+import 'classes/security/*'
 
 # Define filebucket 'main':
 filebucket { 'main':
