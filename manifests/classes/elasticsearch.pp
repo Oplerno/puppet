@@ -1,11 +1,17 @@
 ## elasticsearch.pp
 
 apt::source { 'elasticsearch':
-  location  => 'http://packages.elasticsearch.org/elasticsearch/1.0/debian',
-  release   => 'stable',
-  repos     => 'main',
-  before    => Class['elasticsearch'],
-  require   => Package['openjdk-7-jre-headless'],
+  location          => 'http://packages.elasticsearch.org/elasticsearch/1.0/debian',
+  release           => 'stable',
+  repos             => 'main',
+  before            => Class['elasticsearch'],
+  require           => Package['openjdk-7-jre-headless'],
+  include_src       => true,
+}
+
+apt_key { 'puppetlabs':
+  ensure => 'present',
+  id     => 'D27D666CD88E42B4',
 }
 
 package { 'openjdk-7-jre-headless':
