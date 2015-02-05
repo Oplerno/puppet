@@ -6,10 +6,10 @@ apt::source { 'elasticsearch':
   repos             => 'main',
   before            => Class['elasticsearch'],
   require           => Package['openjdk-7-jre-headless'],
-  include_src       => true,
+  include_src       => false,
 }
 
-apt_key { 'puppetlabs':
+apt::key { 'elesticsearch':
   ensure => 'present',
   id     => 'D27D666CD88E42B4',
 }
