@@ -9,10 +9,11 @@ apt::source { 'elasticsearch':
   include_src       => false,
 }
 
-apt::key { 'elesticsearch':
-  ensure => 'present',
-  id     => 'D27D666CD88E42B4',
-}
+## FIXME: how do I get the key?
+#apt::key { 'elesticsearch':
+#  ensure => 'present',
+#  id     => 'D27D666CD88E42B4',
+#}
 
 package { 'openjdk-7-jre-headless':
   ensure => 'installed',
