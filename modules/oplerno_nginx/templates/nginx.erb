@@ -90,9 +90,12 @@ server {
 	}
 
 	location / {
-	  proxy_set_header X-FORWARDED_PROTO https;
-		proxy_pass http://appservers;
-		#proxy_pass http://localhost:9000;
-		proxy_set_header Host $host;
+    if ($http_origin ~* (s\.codepen\.io|www\.oplerno\.com|enroll\.oplerno\.com)$) {
+      add_header Access-Control-Allow-Origin "$http_origin";
+    }
+    proxy_set_header X-FORWARDED_PROTO https;
+    proxy_pass http://appservers;
+    #proxy_pass http://localhost:9000;
+    proxy_set_header Host $host;
 	}
 }
