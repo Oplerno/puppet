@@ -38,6 +38,11 @@ server {
   add_header X-Frame-Options DENY;
   #add_header Content-Security-Policy "default-src 'self'; script-src 'self' www.authy.com js-agent.newrelic.com www.google-analytics.com ajax.googleapis.com;";
 
+  # rewrites
+  #
+
+  rewrite ^(/invited/)(.*)$ /invites/edit?invite_validate[code]=$2 break;
+
   location = /google99d84ca7cbab332f.html {
     rewrite ^/(.*)  $1;
     return 200 "google-site-verification: $uri";
@@ -87,10 +92,6 @@ server {
     gzip_static on; # to serve pre-gzipped version
     expires max;
     add_header Cache-Control public;
-  }
-
-  location /invited/($|.*) {
-    rewrite ^(.*)$ /invites/edit?invite_validate[code]=$1;
   }
 
   location / {
