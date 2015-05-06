@@ -29,10 +29,10 @@ node 'copl03' {
   class{ 'oomkiller': }
 
   vcsrepo { '/etc/puppetlabs/puppet':
-    ensure       => latest,
-    provider     => git,
-    source       => 'git@github.com:Oplerno/puppet.git',
-    revision     => 'master',
+    ensure   => latest,
+    provider => git,
+    source   => 'git@github.com:Oplerno/puppet.git',
+    revision => 'master',
   }
 }
 

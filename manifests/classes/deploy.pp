@@ -3,8 +3,10 @@
 user { 'deploy':
   ensure => 'present',
   name   => 'deploy',
+  groups => ['deploy'],
   shell  => '/bin/bash',
 }
+
 
 file {'/home/deploy/.ssh':
   ensure => directory,
