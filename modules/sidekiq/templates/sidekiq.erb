@@ -26,27 +26,30 @@ case "$1" in
     echo "Starting script $SERVICE"
 
     cd $LOCATION
+
+    rvm use $(cat .ruby-version) 
+
     $SIDEKIQ -d -C $CONFIG -L /var/log/sidekiq.log -P /var/run/$SERVICE.pid
     ;;
   stop)
     echo "Stopping script $SERVICE"
 
     # Warn sidekiq it will be shutdown soon
-    kill -USR1 $(cat /var/run/$SERVICE.pid)
+    kill -USR1 $(pgrep $SERVICE)
 
     # Should we wait here?
     sleep 5
 
     # Kill sidekiq
-    kill -TERM $(cat /var/run/$SERVICE.pid)
-    rm /var/run/$SERVICE.pid /var/lock/$SERVICE
+    kill -TERM $(pgrep $SERVICE)
+    rm /var/lock/$SERVICE
     ;;
-	status)
-		pgrep $SERVICE
-		exit $?
-		;;
+  status)
+    pgrep $SERVICE
+    exit $?
+    ;;
   *)
-    echo "Usage: /etc/init.d/$SERVICE {start|stop}"
+    echo "Usage: /etc/init.d/$SERVICE {start|stop|status}"
     exit 1
     ;;
 esac

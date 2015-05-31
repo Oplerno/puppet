@@ -11,7 +11,6 @@ class sidekiq {
     name   => 'sidekiq',
     groups => ['sidekiq', 'deploy'],
     shell  => '/bin/true',
-    before  => Service['sidekiq'],
     require => Group['sidekiq'],
     before  => File['sidekiq'],
   }
