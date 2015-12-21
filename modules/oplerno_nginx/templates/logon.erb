@@ -7,7 +7,7 @@ upstream login_servers {
 
 
 server {
-  listen   <%= $ipaddress_eth0_0 %>:443  default ssl;
+  listen   <%= @ipaddress_eth0_0 %>:443  default ssl;
   server_name  logon.oplerno.com;
   root /home/deploy/www/current/public;
   disable_symlinks off;
