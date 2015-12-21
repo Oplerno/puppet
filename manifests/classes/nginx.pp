@@ -17,4 +17,17 @@ file { '/etc/nginx/sites-enabled/oplerno':
   require => File['nginx.conf'],
 }
 
+file { 'logon':
+  ensure  => 'present',
+  notify  => Service['nginx'],
+  path    => '/etc/nginx/sites-available/logon',
+  mode    => '0644',
+  content => template('oplerno_nginx/logon.erb'),
+  before  => Service['nginx'],
+}
 
+file { '/etc/nginx/sites-enabled/logon':
+  ensure  => 'link',
+  target  => '/etc/nginx/sites-available/logon',
+  require => File['logon'],
+}
