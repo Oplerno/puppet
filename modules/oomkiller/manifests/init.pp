@@ -27,11 +27,11 @@ class oomkiller::service {
 }
 
 class oomkiller(
-    $version = 'present',
-    $enable  = true,
-    $start   = true,
-  ) {
-  class { 'oomkiller::install': } ->
+  $version = 'present',
+  $enable  = true,
+  $start   = true,
+) {
+class { 'oomkiller::install': } ->
   class { 'oomkiller::service': } ->
   Class['oomkiller']
 }

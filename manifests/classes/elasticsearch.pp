@@ -1,12 +1,12 @@
 ## elasticsearch.pp
 
 apt::source { 'elasticsearch':
-  location          => 'http://packages.elasticsearch.org/elasticsearch/1.0/debian',
-  release           => 'stable',
-  repos             => 'main',
-  before            => Class['elasticsearch'],
-  require           => Package['openjdk-7-jre-headless'],
-  include_src       => false,
+  location    => 'http://packages.elasticsearch.org/elasticsearch/1.0/debian',
+  release     => 'stable',
+  repos       => 'main',
+  before      => Class['elasticsearch'],
+  require     => Package['openjdk-7-jre-headless'],
+  include_src => false,
 }
 
 ## FIXME: how do I get the key?
@@ -19,7 +19,7 @@ package { 'openjdk-7-jre-headless':
   ensure => 'installed',
 }
 
-if $::hostname == ("cOPL03") {
+if $::hostname == ('cOPL03') {
   $ec_ip = $::ipaddress
   $master = 'true'
 } else {
