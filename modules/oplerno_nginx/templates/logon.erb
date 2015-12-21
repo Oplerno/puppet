@@ -86,7 +86,7 @@ server {
   }
 
   location / {
-    if ($http_origin ~* (s\.codepen\.io|*.\.oplerno\.com)$) {
+    if ($http_origin ~* (s\.codepen\.io|www\.oplerno\.com|enroll\.oplerno\.com|logon\.oplerno\.com)$) {
       add_header Access-Control-Allow-Origin "$http_origin";
     }
     proxy_set_header X-FORWARDED_PROTO https;
