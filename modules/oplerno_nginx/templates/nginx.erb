@@ -22,8 +22,8 @@ server {
   disable_symlinks off;
 
   ssl  on;
-  ssl_certificate  /home/deploy/.enroll_ssl.crt;
-  ssl_certificate_key  /home/deploy/.oplerno_ssl.key;
+  ssl_certificate /home/deploy/2016-enroll-keys/1_enroll.oplerno.com_bundle.crt;
+  ssl_certificate_key /home/deploy/2016-enroll-keys/enroll.oplerno.com.key;
   ssl_dhparam /home/deploy/.dh.param;
   ssl_session_cache shared:SSL:10m;
   ssl_session_timeout  5m;
